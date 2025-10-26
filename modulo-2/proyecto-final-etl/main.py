@@ -6,9 +6,13 @@ from tasks.load import load
 
 @flow
 def main():
+    """Main ETL flow to extract, transform, and load car data."""
     data = extract()
-    data_transform = transform(data)
-    load(data_transform)
-    
+    transformed = transform(data)
+    print(f"Transformed {len(transformed)} records.")
+    inserted = load(transformed)
+    print(f"Inserted {inserted} records into the database.")
+
+
 if __name__ == "__main__":
     main()
